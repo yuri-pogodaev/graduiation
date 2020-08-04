@@ -1,16 +1,8 @@
-DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS VOTES;
 DROP TABLE IF EXISTS MENU_DISHES;
-DROP TABLE IF EXISTS USERS;
+DROP TABLE IF EXISTS USERES;
 DROP TABLE IF EXISTS RESTAURANTS;
 DROP TABLE IF EXISTS DISHES;
-
-CREATE TABLE customers (
-                           id INT  NOT NULL,
-                           name VARCHAR (45),
-                           email VARCHAR (45),
-                           PRIMARY KEY (ID)
-);
 
 CREATE TABLE USERS
 (
@@ -34,7 +26,7 @@ CREATE TABLE DISHES
 (
     id    UUID PRIMARY KEY,
     name  VARCHAR(50) NOT NULL,
-    price BIGINT      NOT NULL
+    price NUMERIC     NOT NULL
 );
 
 CREATE TABLE MENU_DISHES
@@ -51,8 +43,8 @@ CREATE INDEX menu_date_idx ON MENU_DISHES (updated_at);
 CREATE TABLE VOTES
 (
     updated_at    TIMESTAMP default now() NOT NULL,
-    user_id       UUID                    NOT NULL,
-    restaurant_id UUID                    NOT NULL,
+    user_id       UUID                   ,
+    restaurant_id UUID                   ,
     CONSTRAINT VOTES_ID PRIMARY KEY (user_id, restaurant_id),
     FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE
