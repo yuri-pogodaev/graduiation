@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.topjava.app.entity.User;
 import ru.topjava.app.entity.Vote;
 
 import java.util.Date;
@@ -23,4 +24,5 @@ public class VoteForUpdate {
         this.restaurant = vote.getRestaurant().getName();
         this.updatedAt = vote.getUpdatedAt();
     }
+
 }

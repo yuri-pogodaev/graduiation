@@ -49,7 +49,6 @@ public class UserService {
         return newUser;
     }
 
-
     @Transactional
     public UUID init(@Valid UserForInit userForInit) {
         User newUser = createNewUser(userForInit);

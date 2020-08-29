@@ -11,7 +11,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 public class VoteForResponse {
-    private Vote.voteId id;
+    private Vote.VoteId id;
     private String user;
     private String restaurant;
     private Date updatedAt;

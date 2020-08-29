@@ -1,8 +1,6 @@
 package ru.topjava.app.entity;
 
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +17,7 @@ import java.util.UUID;
 @Table(name = "votes", schema = "PUBLIC")
 public class Vote {
     @EmbeddedId
-    private voteId id;
+    private VoteId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
@@ -34,7 +32,7 @@ public class Vote {
     @AllArgsConstructor
     @NoArgsConstructor
     @Embeddable
-    public static class voteId implements Serializable {
+    public static class VoteId implements Serializable {
         @Column(name = "user_id")
         private UUID userId;
         @Column(name = "restaurant_id")
@@ -44,4 +42,5 @@ public class Vote {
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
     private Date updatedAt;
+
 }

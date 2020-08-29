@@ -3,8 +3,10 @@ package ru.topjava.app.controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.app.dto.response.VoteForResponse;
+import ru.topjava.app.dto.update.VoteForUpdate;
 import ru.topjava.app.service.VoteService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,13 +24,13 @@ public class VoteController {
         return voteService.getAll();
     }
 
-//    @PostMapping("/update/{id}")
-//    public void update(@PathVariable("id") UUID id, @RequestBody @Valid VoteForUpdate voteForUpdate) throws Exception {
-//        voteService.update(voteForUpdate, id);
-//    }
+    @PostMapping("/update/{id}")
+    public void update(@PathVariable("id") UUID id, @RequestBody @Valid VoteForUpdate voteForUpdate) throws Exception {
+        voteService.update(voteForUpdate, id);
+    }
 
     @GetMapping("/{restaurantId}/{userId}")
-    public VoteForResponse getById(@PathVariable UUID restaurantId, @PathVariable UUID userId){
+    public VoteForResponse getById(@PathVariable UUID restaurantId, @PathVariable UUID userId) {
         return voteService.getById(restaurantId, userId);
     }
 }
