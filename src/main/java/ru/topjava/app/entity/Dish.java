@@ -1,12 +1,16 @@
 package ru.topjava.app.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,4 +39,10 @@ public class Dish {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "dish_id")
     private List<MenuDishes> menuDishes;
+
+    public Dish(UUID id, String name, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.price = price.setScale(3, RoundingMode.HALF_DOWN);
+    }
 }

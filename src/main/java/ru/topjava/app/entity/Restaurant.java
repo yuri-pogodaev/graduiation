@@ -39,4 +39,9 @@ public class Restaurant{
     @NotBlank
     private String address;
 
+    public Restaurant(UUID id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
 }

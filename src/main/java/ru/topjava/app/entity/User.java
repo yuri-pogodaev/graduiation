@@ -46,4 +46,13 @@ public class User{
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<Vote> voteList;
+
+    public User(UUID id, String email, String name, String password, Date registered, Boolean isAdmin) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.registered = registered;
+        this.isAdmin = isAdmin;
+    }
 }

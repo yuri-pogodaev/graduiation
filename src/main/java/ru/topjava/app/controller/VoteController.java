@@ -26,6 +26,7 @@ public class VoteController {
 //    public void update(@PathVariable("id") UUID id, @RequestBody @Valid VoteForUpdate voteForUpdate) throws Exception {
 //        voteService.update(voteForUpdate, id);
 //    }
+
     @GetMapping("/{restaurantId}/{userId}")
     public VoteForResponse getById(@PathVariable UUID restaurantId, @PathVariable UUID userId){
         return voteService.getById(restaurantId, userId);
