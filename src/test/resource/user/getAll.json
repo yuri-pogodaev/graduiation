@@ -1,0 +1,30 @@
+[
+{
+  "id": "6a1fd295-66c4-490b-b8de-24b8029a4db9",
+  "email": "user1@yandex.ru",
+  "name": "User1",
+  "registered": "2020-07-05T21:00:00.000+00:00",
+  "role": "USER"
+},
+{
+"id": "932ad7b5-84df-413c-a5ba-c12fddd469ec",
+"email": "user2@yandex.ru",
+"name": "User2",
+"registered": "2020-07-05T21:00:00.000+00:00",
+"role": "USER"
+},
+{
+"id": "b063b2ba-f191-43fa-bf4d-531bf1996134",
+"email": "user3@yandex.ru",
+"name": "User3",
+"registered": "2020-07-05T21:00:00.000+00:00",
+"role": "USER"
+},
+{
+"id": "b71db295-2f71-45e2-be20-2be6c65624a8",
+"email": "admin@gmail.com",
+"name": "Admin",
+"registered": "2020-07-05T21:00:00.000+00:00",
+"role": "ADMIN"
+}
+]
