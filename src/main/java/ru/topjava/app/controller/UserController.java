@@ -1,6 +1,8 @@
 package ru.topjava.app.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.app.dto.insert.UserForInit;
 import ru.topjava.app.dto.response.UserForResponse;
@@ -35,7 +37,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public void update(@PathVariable("id") UUID id, @RequestBody @Valid UserForUpdate userForUpdate) throws Exception {
         userService.update(userForUpdate, id);
     }
@@ -45,7 +47,6 @@ public class UserController {
     public UUID save(@RequestBody @Valid UserForInit userForInit) {
         return userService.init(userForInit);
     }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") UUID id) throws Exception {
         userService.deleteById(id);

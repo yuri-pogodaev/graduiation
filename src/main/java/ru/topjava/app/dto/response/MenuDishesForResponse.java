@@ -6,12 +6,13 @@ import lombok.Data;
 import ru.topjava.app.entity.MenuDishes;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @Builder
 @AllArgsConstructor
 public class MenuDishesForResponse {
-    private MenuDishes.Id id;
+    private UUID id;
     private String dish;
     private String restaurant;
     private Date updatedAt;

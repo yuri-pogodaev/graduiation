@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import ru.topjava.app.entity.User;
 import ru.topjava.app.entity.Vote;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor

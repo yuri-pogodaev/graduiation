@@ -16,8 +16,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "menu_dishes", schema = "PUBLIC")
 public class MenuDishes {
-    @EmbeddedId
-    private Id id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dish_id", insertable = false, updatable = false)
@@ -28,17 +29,17 @@ public class MenuDishes {
     private Restaurant restaurant;
 
 
-    @Data
-    @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Embeddable
-    public static class Id implements Serializable {
-        @Column(name = "dish_id")
-        private UUID dishId;
-        @Column(name = "restaurant_id")
-        private UUID restaurantId;
-    }
+//    @Data
+//    @Builder
+//    @AllArgsConstructor
+//    @NoArgsConstructor
+//    @Embeddable
+//    public static class Id implements Serializable {
+//        @Column(name = "dish_id")
+//        private UUID dishId;
+//        @Column(name = "restaurant_id")
+//        private UUID restaurantId;
+//    }
 
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull

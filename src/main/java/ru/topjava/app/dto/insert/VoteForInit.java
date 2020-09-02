@@ -7,14 +7,16 @@ import lombok.NoArgsConstructor;
 import ru.topjava.app.entity.Vote;
 
 import java.util.Date;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 public class VoteForInit {
-    private Vote.VoteId id;
+    private UUID id;
     private String user;
-    private String restaurant;
     private Date updatedAt;
+
+
 }

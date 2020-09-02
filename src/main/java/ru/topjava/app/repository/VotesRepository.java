@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface VotesRepository extends JpaRepository<Vote, Vote.VoteId> {
+public interface VotesRepository extends JpaRepository<Vote, UUID> {
     @Modifying
     @Query("delete from Vote v WHERE v.user.id = :id")
     void delete(@Param("id") UUID id);
@@ -22,6 +22,6 @@ public interface VotesRepository extends JpaRepository<Vote, Vote.VoteId> {
 
     Vote findByRestaurantIdAndUserId(UUID userId, UUID restaurantId);
 
-    @Query("select v from Vote v where v.id.userId = :userId")
-    Optional<Vote> findVoteByUserId(@Param("userId") UUID userId);
+//    @Query("select v from Vote v where v.id.userId = :userId")
+//    Optional<Vote> findVoteByUserId(@Param("userId") UUID userId);
 }

@@ -32,6 +32,7 @@ public class UserForInit {
     @NotNull
     private Date registered;
 
-    private Boolean isAdmin;
+    @NotNull
+    private String role;
 
 }

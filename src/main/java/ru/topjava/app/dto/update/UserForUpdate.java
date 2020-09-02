@@ -1,6 +1,7 @@
 package ru.topjava.app.dto.update;
 
 import lombok.*;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.topjava.app.entity.User;
 
 import javax.validation.constraints.NotBlank;

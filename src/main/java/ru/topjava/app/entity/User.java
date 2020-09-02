@@ -40,19 +40,19 @@ public class User{
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()")
     private Date registered;
 
-    @Column(name = "is_admin", nullable = false, columnDefinition = "bool default false")
-    private Boolean isAdmin;
-
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<Vote> voteList;
 
-    public User(UUID id, String email, String name, String password, Date registered, Boolean isAdmin) {
+    @Column(name = "role", nullable = false)
+    private String role;
+
+    public User(UUID id, String email, String name, String password, Date registered, String role) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.password = password;
         this.registered = registered;
-        this.isAdmin = isAdmin;
+        this.role = role;
     }
 }

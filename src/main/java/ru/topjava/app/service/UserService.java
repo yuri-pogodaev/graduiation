@@ -43,7 +43,7 @@ public class UserService {
                 .name(userForInit.getName())
                 .password(userForInit.getPassword())
                 .registered(userForInit.getRegistered())
-                .isAdmin(userForInit.getIsAdmin())
+                .role(userForInit.getRole())
                 .build();
         userRepository.saveAndFlush(newUser);
         return newUser;
