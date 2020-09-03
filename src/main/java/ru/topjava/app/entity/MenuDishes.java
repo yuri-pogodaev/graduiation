@@ -5,6 +5,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,6 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "menu_dishes", schema = "PUBLIC")
 public class MenuDishes {
     @Id
@@ -21,11 +24,11 @@ public class MenuDishes {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dish_id", insertable = false, updatable = false)
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", insertable = false, updatable = false)
+    @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
 
@@ -43,5 +46,5 @@ public class MenuDishes {
 
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
-    private Date updatedAt;
+    private LocalDate updatedAt;
 }

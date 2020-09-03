@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import ru.topjava.app.config.TestConfig;
+import ru.topjava.app.config.TestSeecurityConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.nio.charset.Charset;
 
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {TestConfig.class})
+@SpringBootTest(classes = {TestConfig.class, TestSeecurityConfig.class})
 @AutoConfigureMockMvc
 @Rollback
 @Transactional

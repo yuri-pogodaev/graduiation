@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.topjava.app.entity.Vote;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,6 +23,6 @@ public interface VotesRepository extends JpaRepository<Vote, UUID> {
 
     Vote findByRestaurantIdAndUserId(UUID userId, UUID restaurantId);
 
-//    @Query("select v from Vote v where v.id.userId = :userId")
-//    Optional<Vote> findVoteByUserId(@Param("userId") UUID userId);
+    @Query("select v from Vote v where v.user.id = :userId")
+    Optional<List<Vote>> findVoteByUserId(@Param("userId") UUID userId);
 }

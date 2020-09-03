@@ -1,6 +1,7 @@
 package ru.topjava.app.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import ru.topjava.app.service.UserService;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
-
+@PreAuthorize(value = "ADMIN")
 @RestController
 @RequestMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
@@ -28,6 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public UserForResponse getById(@PathVariable("id") UUID id) {
         try {
             return userService.getById(id);

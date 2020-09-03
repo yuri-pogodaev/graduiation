@@ -45,7 +45,7 @@ public class RestaurantController {
         restaurantService.deleteById(id);
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public void update(@PathVariable("id") UUID id, @RequestBody @Valid RestaurantForUpdate restaurantForUpdate) throws Exception {
         restaurantService.update(restaurantForUpdate, id);
     }

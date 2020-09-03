@@ -61,7 +61,7 @@ public class DishService {
     }
 
     @Transactional
-    public void update(@Valid DishForUpdate dishForUpdate, UUID id) {
+    public void update(DishForUpdate dishForUpdate, UUID id) {
         dishesRepository.findById(id).map(user -> {
             user.setName(dishForUpdate.getName());
             user.setPrice(dishForUpdate.getPrice());

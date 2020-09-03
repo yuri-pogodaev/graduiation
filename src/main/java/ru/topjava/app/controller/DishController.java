@@ -45,7 +45,7 @@ public class DishController {
         dishService.deleteById(id);
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public void update(@PathVariable("id") UUID id, @RequestBody @Valid DishForUpdate dishForUpdate) throws Exception {
         dishService.update(dishForUpdate, id);
     }

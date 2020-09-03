@@ -8,6 +8,7 @@ import ru.topjava.app.entity.User;
 import ru.topjava.app.entity.Vote;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class VoteForUpdate {
 
     private String user;
     private String restaurant;
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     public VoteForUpdate(Vote vote) {
         this.user = vote.getUser().getName();

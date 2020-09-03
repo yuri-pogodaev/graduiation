@@ -58,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
+                //нужна authority и аннотация @SECURED
+//                .antMatchers("/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
@@ -73,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
     {
-        auth.jdbcAuthentication().dataSource(dataSource)
+        auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
                 .authoritiesByUsernameQuery("select EMAIl, ROLE from USERS where EMAIL=?")
                 .usersByUsernameQuery("select EMAIL, PASSWORD, 1 as enabled  from USERS where EMAIL=?");
     }

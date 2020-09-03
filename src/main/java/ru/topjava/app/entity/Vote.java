@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -23,11 +24,11 @@ public class Vote {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", insertable = false, updatable = false)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
 //    @Data
@@ -44,11 +45,6 @@ public class Vote {
 
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
-    public Vote(Date updatedAt, User user, Restaurant restaurant) {
-        this.updatedAt = updatedAt;
-        this.user = user;
-        this.restaurant = restaurant;
-    }
 }

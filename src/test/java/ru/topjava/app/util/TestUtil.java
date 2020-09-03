@@ -3,7 +3,6 @@ package ru.topjava.app.util;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
-import ru.topjava.app.entity.Role;
 import ru.topjava.app.entity.User;
 
 public class TestUtil {

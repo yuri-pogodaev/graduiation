@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import ru.topjava.app.entity.MenuDishes;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,7 +17,7 @@ public class MenuDishesForResponse {
     private UUID id;
     private String dish;
     private String restaurant;
-    private Date updatedAt;
+    private LocalDate updatedAt;
 
     public MenuDishesForResponse(MenuDishes menuDishes) {
         this.id = menuDishes.getId();

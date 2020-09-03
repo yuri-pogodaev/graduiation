@@ -1,9 +1,10 @@
-package ru.topjava.app.dto.insert;
+package ru.topjava.app.dto.update;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.topjava.app.entity.Dish;
 
 import java.util.UUID;
 
@@ -11,9 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Builder
-public class VoteForInit {
-    private UUID user;
-    private UUID restaurant;
-
-
+public class MenuDishesForUpdate {
+//    private UUID id;
+        private UUID dish;
+//    private UUID restaurant;
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import ru.topjava.app.entity.Vote;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public class VoteForResponse {
     private UUID id;
     private String user;
     private String restaurant;
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     public VoteForResponse(Vote vote) {
         this.id = vote.getId();

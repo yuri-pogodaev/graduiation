@@ -4,6 +4,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.topjava.app.dto.insert.VoteForInit;
 import ru.topjava.app.dto.response.VoteForResponse;
 import ru.topjava.app.dto.update.VoteForUpdate;
 import ru.topjava.app.entity.Vote;
@@ -32,7 +33,7 @@ public class VoteController {
 
     @PostMapping("/update/{id}")
     public void update(@PathVariable("id") UUID id, @RequestBody @Valid VoteForUpdate voteForUpdate) throws Exception {
-        voteService.update(voteForUpdate, id);
+//        voteService.update(voteForUpdate, id);
     }
 
     @GetMapping("/{restaurantId}/{userId}")
@@ -41,14 +42,10 @@ public class VoteController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Vote> save(@RequestBody @Valid Date date, UUID userId, UUID restaurantId) throws Exception {
-        Vote created = voteService.createNewVote(date, userId, restaurantId);
-        URI newResourceUri = ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path("/votes" + "/{id}")
-                .buildAndExpand(created.getId())
-                .toUri();
-        return ResponseEntity.created(newResourceUri).body(created);
+    public UUID save(@RequestBody @Valid VoteForInit voteForInit) throws Exception {
+        Vote created = voteService.createNewVote(voteForInit);
+
+        return created.getId();
     }
 
 }
