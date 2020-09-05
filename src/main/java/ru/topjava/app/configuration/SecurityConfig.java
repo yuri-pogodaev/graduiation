@@ -44,22 +44,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception
-//    {
-//        http.httpBasic()
-//                .and()
-//                .authorizeRequests()
-//                .anyRequest().authenticated();
-//        http.csrf().disable();
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
+//                .antMatchers("/**").permitAll()
                 //нужна authority и аннотация @SECURED
-//                .antMatchers("/user/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**").hasAuthority("ADMIN")
+                .antMatchers("/menuDishes/**").hasAuthority("ADMIN")
+                .antMatchers("/vote/save").hasAuthority("USER")
+                .antMatchers("/vote/**").hasAuthority("ADMIN")
+                .antMatchers("/dish/**").hasAuthority("ADMIN")
+                .antMatchers("/restaurant/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
