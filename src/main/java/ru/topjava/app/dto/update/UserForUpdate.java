@@ -1,14 +1,13 @@
 package ru.topjava.app.dto.update;
 
-import lombok.*;
-import org.springframework.web.bind.annotation.ResponseBody;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.topjava.app.entity.User;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +29,6 @@ public class UserForUpdate {
     public UserForUpdate(User user) {
         this.email = user.getEmail();
         this.name = user.getName();
-        this.password= user.getPassword();
+        this.password = user.getPassword();
     }
 }

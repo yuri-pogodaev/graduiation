@@ -19,7 +19,7 @@ import java.util.UUID;
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(name = "users_unique_email_idx", columnNames = "email")})
 @Builder
 @Access(AccessType.FIELD)
-public class User{
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;

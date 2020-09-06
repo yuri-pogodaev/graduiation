@@ -7,13 +7,10 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -48,7 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/**").permitAll()
                 //нужна authority и аннотация @SECURED
                 .antMatchers("/user/**").hasAuthority("ADMIN")
                 .antMatchers("/menuDishes/**").hasAuthority("ADMIN")
@@ -65,12 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 BasicAuthenticationFilter.class);
         http.csrf().disable();
     }
+
     @Autowired
     private MyBasicAuthenticationEntryPoint authenticationEntryPoint;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
-    {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
                 .authoritiesByUsernameQuery("select EMAIl, ROLE from USERS where EMAIL=?")
                 .usersByUsernameQuery("select EMAIL, PASSWORD, 1 as enabled  from USERS where EMAIL=?");
@@ -80,6 +76,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 }

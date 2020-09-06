@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "restaurants", schema = "PUBLIC")
-public class Restaurant{
+public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;

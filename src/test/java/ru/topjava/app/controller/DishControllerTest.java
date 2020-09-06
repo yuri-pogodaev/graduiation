@@ -9,7 +9,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.topjava.app.dto.response.DishForResponse;
-import ru.topjava.app.dto.response.MenuDishesForResponse;
 
 import java.util.Arrays;
 
@@ -19,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class DishControllerTest extends AbstractControllerTest {
 
     @Test
-    void getAll() throws Exception{
+    void getAll() throws Exception {
         MvcResult res = mockMvc.perform(get("/dish/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -27,7 +26,7 @@ class DishControllerTest extends AbstractControllerTest {
                 .andReturn();
         DishForResponse[] actual = objectMapper.readValue(res.getResponse().getContentAsString(), DishForResponse[].class);
         String data = getResourceFileContextAsString("classpath:dish/getAll.json");
-        DishForResponse[] expected = objectMapper.readValue(data,DishForResponse[].class);
+        DishForResponse[] expected = objectMapper.readValue(data, DishForResponse[].class);
         Assert.assertEquals(Arrays.toString(expected), Arrays.toString(actual));
         Assert.assertEquals(Arrays.hashCode(expected), Arrays.hashCode(actual));
         Assert.assertEquals(Arrays.toString(expected), Arrays.toString(actual));
@@ -52,7 +51,7 @@ class DishControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void save() throws Exception{
+    void save() throws Exception {
         MvcResult res = mockMvc.perform(post("/dish/save")
                 .contentType(MediaType.APPLICATION_JSON).content(getResourceFileContextAsString("classpath:dish/bodyForSave.json")))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();

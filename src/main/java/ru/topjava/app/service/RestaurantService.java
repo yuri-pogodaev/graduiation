@@ -65,14 +65,13 @@ public class RestaurantService {
         });
 
     }
-//TODO доделать delete
+
+    //TODO доделать delete
     @Transactional
     public void deleteById(UUID id) throws Exception {
         Restaurant restaurant = restaurantsRepository.findById(id).orElseThrow(() -> new Exception("restaurant not found"));
         menuDishesRepository.deleteWithRestaurantId(restaurant.getId());
         votesRepository.deleteWithRestaurantId(restaurant.getId());
-//        menuDishesRepository.delete(restaurant.getId());
         restaurantsRepository.deleteById(restaurant.getId());
-
     }
 }

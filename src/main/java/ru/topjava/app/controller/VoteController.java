@@ -25,11 +25,11 @@ public class VoteController {
         return voteService.getAll();
     }
 
-    //    @Secured("ROLE_USER")
-//    @PostMapping("/update/{id}")
-//    public void update(@PathVariable("id") UUID id, @RequestBody @Valid VoteForUpdate voteForUpdate) throws Exception {
-////        voteService.update(voteForUpdate, id);
-//    }
+    @GetMapping("/history/{userId}")
+    public List<VoteForResponse> getHistory(@PathVariable UUID userId) {
+        return voteService.getHistory(userId);
+    }
+
 
     @GetMapping("/{restaurantId}/{userId}")
     public VoteForResponse getById(@PathVariable UUID restaurantId, @PathVariable UUID userId) {

@@ -4,10 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @EqualsAndHashCode(of = "id")
@@ -30,19 +27,6 @@ public class MenuDishes {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
-
-
-//    @Data
-//    @Builder
-//    @AllArgsConstructor
-//    @NoArgsConstructor
-//    @Embeddable
-//    public static class Id implements Serializable {
-//        @Column(name = "dish_id")
-//        private UUID dishId;
-//        @Column(name = "restaurant_id")
-//        private UUID restaurantId;
-//    }
 
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull

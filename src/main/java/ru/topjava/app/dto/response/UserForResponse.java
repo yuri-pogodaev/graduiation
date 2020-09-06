@@ -14,20 +14,18 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UserForResponse  {
-//    @JsonSerialize(using= UUIDSerializer.class)
-//    @JsonDeserialize(using= UUIDDeserializer.class)
+public class UserForResponse {
     private UUID id;
     private String email;
     private String name;
     private Date registered;
     private String role;
 
-
     public UserForResponse(User user) {
         this.id = user.getId();
         this.email = user.getEmail();
         this.name = user.getName();
         this.registered = user.getRegistered();
-        this.role=user.getRole();    }
+        this.role = user.getRole();
+    }
 }

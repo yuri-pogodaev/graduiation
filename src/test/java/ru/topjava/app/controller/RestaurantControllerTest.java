@@ -7,17 +7,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.topjava.app.dto.response.RestaurantForResponse;
-import ru.topjava.app.dto.response.RestaurantForResponse;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-class RestaurantControllerTest extends AbstractControllerTest{
+class RestaurantControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
@@ -66,7 +62,7 @@ class RestaurantControllerTest extends AbstractControllerTest{
     }
 
     @Test
-    void update() throws Exception{
+    void update() throws Exception {
         MvcResult res = mockMvc.perform(put("/restaurant/update/44569c6f-c11f-4d0c-8578-b57b736bc079")
                 .contentType(MediaType.APPLICATION_JSON).content(getResourceFileContextAsString("classpath:restaurant/bodyForUpdate.json")))
                 .andExpect(MockMvcResultMatchers.status().isOk())

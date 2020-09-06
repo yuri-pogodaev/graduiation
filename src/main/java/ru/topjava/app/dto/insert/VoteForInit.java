@@ -14,6 +14,4 @@ import java.util.UUID;
 public class VoteForInit {
     private UUID user;
     private UUID restaurant;
-
-
 }

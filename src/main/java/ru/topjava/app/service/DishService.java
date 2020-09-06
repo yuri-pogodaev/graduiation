@@ -5,7 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.topjava.app.dto.insert.DishForInit;
 import ru.topjava.app.dto.response.DishForResponse;
 import ru.topjava.app.dto.update.DishForUpdate;
-import ru.topjava.app.dto.update.UserForUpdate;
 import ru.topjava.app.entity.Dish;
 import ru.topjava.app.repository.DishesRepository;
 import ru.topjava.app.repository.MenuDishesRepository;
@@ -55,7 +54,7 @@ public class DishService {
     @Transactional
     public void deleteById(UUID id) throws Exception {
         Dish dish = dishesRepository.findById(id).orElseThrow(() -> new Exception("user not found"));
-       menuDishesRepository.delete(dish.getId());
+        menuDishesRepository.delete(dish.getId());
         dishesRepository.deleteById(dish.getId());
 
     }
@@ -67,6 +66,5 @@ public class DishService {
             user.setPrice(dishForUpdate.getPrice());
             return dishesRepository.saveAndFlush(user);
         });
-
     }
 }

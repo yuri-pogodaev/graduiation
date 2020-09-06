@@ -72,7 +72,6 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new Exception("user not found"));
         votesRepository.delete(user.getId());
         userRepository.deleteById(user.getId());
-
     }
 
 }

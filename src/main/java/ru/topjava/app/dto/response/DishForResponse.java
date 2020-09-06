@@ -15,8 +15,6 @@ import java.util.UUID;
 @NoArgsConstructor
 
 public class DishForResponse {
-//    @JsonSerialize(using= UUIDSerializer.class)
-//    @JsonDeserialize(using= UUIDDeserializer.class)
     private UUID id;
     private String name;
     private BigDecimal price;
