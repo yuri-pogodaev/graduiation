@@ -11,6 +11,7 @@ import ru.topjava.app.repository.RestaurantsRepository;
 import ru.topjava.app.repository.UserRepository;
 import ru.topjava.app.repository.VotesRepository;
 
+import javax.imageio.stream.IIOByteBuffer;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 @Service
 public class VoteService {
 
-    private static final LocalTime VOTE_END_TIME = LocalTime.of(19, 0, 0);
+    private static final LocalTime VOTE_END_TIME = LocalTime.of(23, 0, 0);
     private final VotesRepository votesRepository;
     private final RestaurantsRepository restaurantsRepository;
     private final UserRepository userRepository;
@@ -79,8 +80,8 @@ public class VoteService {
     }
 
     @Transactional
-    public VoteForResponse getById(UUID restaurantId, UUID userId) {
-        Vote vote = votesRepository.findByRestaurantIdAndUserId(restaurantId, userId);
+    public VoteForResponse getById(UUID id) throws Exception {
+        Vote vote = votesRepository.findById(id).orElseThrow(()-> new Exception("vote not found"));
         return new VoteForResponse(vote);
     }
 
@@ -93,6 +94,7 @@ public class VoteService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        assert result != null;
         return result.stream().map(VoteForResponse::new).collect(Collectors.toList());
     }
 }

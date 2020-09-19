@@ -7,7 +7,7 @@ import ru.topjava.app.dto.response.DishForResponse;
 import ru.topjava.app.dto.update.DishForUpdate;
 import ru.topjava.app.entity.Dish;
 import ru.topjava.app.repository.DishesRepository;
-import ru.topjava.app.repository.MenuDishesRepository;
+import ru.topjava.app.repository.MenuItemRepository;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 @Service
 public class DishService {
     private final DishesRepository dishesRepository;
-    private final MenuDishesRepository menuDishesRepository;
+    private final MenuItemRepository menuItemRepository;
 
-    public DishService(DishesRepository dishesRepository, MenuDishesRepository menuDishesRepository) {
+    public DishService(DishesRepository dishesRepository, MenuItemRepository menuItemRepository) {
         this.dishesRepository = dishesRepository;
-        this.menuDishesRepository = menuDishesRepository;
+        this.menuItemRepository = menuItemRepository;
     }
 
     @Transactional
@@ -54,7 +54,7 @@ public class DishService {
     @Transactional
     public void deleteById(UUID id) throws Exception {
         Dish dish = dishesRepository.findById(id).orElseThrow(() -> new Exception("user not found"));
-        menuDishesRepository.delete(dish.getId());
+        menuItemRepository.delete(dish.getId());
         dishesRepository.deleteById(dish.getId());
 
     }

@@ -33,7 +33,7 @@ class VoteControllerTest extends AbstractControllerTest {
 
     @Test
     void getById() throws Exception {
-        MvcResult res = mockMvc.perform(get("/vote/44569c6f-c11f-4d0c-8578-b57b736bc079/6a1fd295-66c4-490b-b8de-24b8029a4db9")
+        MvcResult res = mockMvc.perform(get("/vote/d8a0afe8-38f8-456c-b866-a1e845c4c429")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())

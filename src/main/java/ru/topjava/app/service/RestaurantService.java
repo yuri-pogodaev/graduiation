@@ -6,11 +6,13 @@ import ru.topjava.app.dto.insert.RestaurantForInit;
 import ru.topjava.app.dto.response.RestaurantForResponse;
 import ru.topjava.app.dto.update.RestaurantForUpdate;
 import ru.topjava.app.entity.Restaurant;
-import ru.topjava.app.repository.MenuDishesRepository;
+import ru.topjava.app.repository.MenuItemRepository;
 import ru.topjava.app.repository.RestaurantsRepository;
 import ru.topjava.app.repository.VotesRepository;
 
+import javax.persistence.Cacheable;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -18,12 +20,12 @@ import java.util.stream.Collectors;
 @Service
 public class RestaurantService {
     private final RestaurantsRepository restaurantsRepository;
-    private final MenuDishesRepository menuDishesRepository;
+    private final MenuItemRepository menuItemRepository;
     private final VotesRepository votesRepository;
 
-    public RestaurantService(RestaurantsRepository restaurantsRepository, MenuDishesRepository menuDishesRepository, VotesRepository votesRepository) {
+    public RestaurantService(RestaurantsRepository restaurantsRepository, MenuItemRepository menuItemRepository, VotesRepository votesRepository) {
         this.restaurantsRepository = restaurantsRepository;
-        this.menuDishesRepository = menuDishesRepository;
+        this.menuItemRepository = menuItemRepository;
         this.votesRepository = votesRepository;
     }
 
@@ -66,12 +68,11 @@ public class RestaurantService {
 
     }
 
-    //TODO доделать delete
     @Transactional
     public void deleteById(UUID id) throws Exception {
         Restaurant restaurant = restaurantsRepository.findById(id).orElseThrow(() -> new Exception("restaurant not found"));
-        menuDishesRepository.deleteWithRestaurantId(restaurant.getId());
-        votesRepository.deleteWithRestaurantId(restaurant.getId());
         restaurantsRepository.deleteById(restaurant.getId());
     }
+
+
 }

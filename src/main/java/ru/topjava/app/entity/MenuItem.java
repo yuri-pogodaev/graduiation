@@ -14,8 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table(name = "menu_dishes", schema = "PUBLIC")
-public class MenuDishes {
+@Table(name = "menu_dish", schema = "PUBLIC")
+public class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -25,7 +25,7 @@ public class MenuDishes {
     private Dish dish;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamp default now()")

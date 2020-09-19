@@ -21,7 +21,7 @@ public interface VotesRepository extends JpaRepository<Vote, UUID> {
     @Query("delete from Vote v where v.restaurant.id = :id")
     void deleteWithRestaurantId(@Param("id") UUID id);
 
-    Vote findByRestaurantIdAndUserId(UUID userId, UUID restaurantId);
+//    Vote findByRestaurantIdAndUserId(UUID userId, UUID restaurantId);
 
     @Query("select v from Vote v where v.user.id = :userId")
     Optional<List<Vote>> findVoteByUserId(@Param("userId") UUID userId);

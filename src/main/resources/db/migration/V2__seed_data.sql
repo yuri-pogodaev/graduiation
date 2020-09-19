@@ -1,14 +1,14 @@
 DELETE
-FROM VOTES;
+FROM vote;
 DELETE
-FROM DISHES;
+FROM dish;
 DELETE
-FROM USERS;
+FROM users;
 DELETE
-FROM RESTAURANTS;
+FROM restaurant;
 DELETE
-FROM MENU_DISHES;
-INSERT INTO USERS (ID, NAME, EMAIL, PASSWORD, REGISTERED, ROLE)
+FROM menu_dish;
+INSERT INTO users (ID, NAME, EMAIL, PASSWORD, REGISTERED, ROLE)
 VALUES ('6a1fd295-66c4-490b-b8de-24b8029a4db9', 'User1', 'user1@yandex.ru',
         '$2a$10$.Rxx4JnuX8OGJTIOCXn76euuB3dIGHHrkX9tswYt9ECKjAGyms30W', '2020-07-06', 'USER'),
        ('932ad7b5-84df-413c-a5ba-c12fddd469ec', 'User2', 'user2@yandex.ru',
@@ -20,12 +20,12 @@ VALUES ('6a1fd295-66c4-490b-b8de-24b8029a4db9', 'User1', 'user1@yandex.ru',
 
 
 
-INSERT INTO RESTAURANTS (ID, NAME, ADDRESS)
+INSERT INTO restaurant (ID, NAME, ADDRESS)
 VALUES ('44569c6f-c11f-4d0c-8578-b57b736bc079', 'Европейский ресторан', 'Ленинский пр-т, д. 1'),
        ('7ea5de3a-1846-4bf2-9151-d1bfccf716a5', 'Тайский ресторан', 'Тверская ул., д. 10'),
        ('cf14de54-3c75-41c6-a05f-9a87b18d1fe5', 'Русский ресторан', 'Площадь им. Ленина, д. 18');
 
-INSERT INTO DISHES (ID, NAME, PRICE)
+INSERT INTO dish (ID, NAME, PRICE)
 VALUES ('06d18c89-1461-48ad-bcfa-a726a51d3ec3', 'Салат Цезарь', 500),
        ('09f79f73-5d25-4461-85d8-2e1bdf9420e9', 'Грибной суп', 1200),
        ('0ba6a0ef-9886-4e05-92f6-7dd729eaf7fd', 'Стейк', 2100),
@@ -42,7 +42,7 @@ VALUES ('06d18c89-1461-48ad-bcfa-a726a51d3ec3', 'Салат Цезарь', 500),
        ('d11a4a44-e79b-4745-9a4f-eecfba225e89', 'Томатный суп', 270),
        ('f649a320-e50c-46e8-9657-d433f32734cf', 'Паста', 290);
 
-INSERT INTO MENU_DISHES (ID, UPDATED_AT, DISH_ID, RESTAURANT_ID)
+INSERT INTO menu_dish (ID, UPDATED_AT, DISH_ID, RESTAURANT_ID)
 VALUES ('d2f63f20-da39-4606-9aae-1c492d3c4a42', '2020-07-06', '06d18c89-1461-48ad-bcfa-a726a51d3ec3',
         '44569c6f-c11f-4d0c-8578-b57b736bc079'),
        ('8b247ae8-fd3e-46e0-a279-24bc1de2be80', '2020-07-06', '09f79f73-5d25-4461-85d8-2e1bdf9420e9',
@@ -71,7 +71,7 @@ VALUES ('d2f63f20-da39-4606-9aae-1c492d3c4a42', '2020-07-06', '06d18c89-1461-48a
        ('15fdbe43-77c4-4fd2-a18c-ca78fec86574', '2020-07-09', 'f649a320-e50c-46e8-9657-d433f32734cf',
         '44569c6f-c11f-4d0c-8578-b57b736bc079');
 
-INSERT INTO VOTES (ID, UPDATED_AT, USER_ID, RESTAURANT_ID)
+INSERT INTO vote (ID, UPDATED_AT, USER_ID, RESTAURANT_ID)
 VALUES ('d8a0afe8-38f8-456c-b866-a1e845c4c429', '2020-07-06', '6a1fd295-66c4-490b-b8de-24b8029a4db9',
         '44569c6f-c11f-4d0c-8578-b57b736bc079'),
        ('3917d6e6-c839-4b79-9cb0-3137be35f639', '2020-07-06', '932ad7b5-84df-413c-a5ba-c12fddd469ec',

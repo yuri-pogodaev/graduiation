@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.topjava.app.entity.MenuDishes;
+import ru.topjava.app.entity.MenuItem;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -13,16 +13,16 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MenuDishesForResponse {
+public class MenuItemForResponse {
     private UUID id;
     private String dish;
     private String restaurant;
     private LocalDate updatedAt;
 
-    public MenuDishesForResponse(MenuDishes menuDishes) {
-        this.id = menuDishes.getId();
-        this.dish = String.valueOf(menuDishes.getDish().getName());
-        this.restaurant = String.valueOf(menuDishes.getRestaurant().getName());
-        this.updatedAt = menuDishes.getUpdatedAt();
+    public MenuItemForResponse(MenuItem menuItem) {
+        this.id = menuItem.getId();
+        this.dish = String.valueOf(menuItem.getDish().getName());
+        this.restaurant = String.valueOf(menuItem.getRestaurant().getName());
+        this.updatedAt = menuItem.getUpdatedAt();
     }
 }

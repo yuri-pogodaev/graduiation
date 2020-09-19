@@ -1,9 +1,6 @@
 package ru.topjava.app.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,22 +8,23 @@ import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.UUID;
 
+@EqualsAndHashCode(of = "id")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "restaurants", schema = "PUBLIC")
+@Table(name = "restaurant", schema = "PUBLIC")
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
-    private List<MenuDishes> menuDishes;
+    private List<MenuItem> menuDishes;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "restaurant_id")
     private List<Vote> voteList;
 

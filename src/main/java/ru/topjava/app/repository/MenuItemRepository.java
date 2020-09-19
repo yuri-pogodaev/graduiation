@@ -5,18 +5,18 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import ru.topjava.app.entity.MenuDishes;
+import ru.topjava.app.entity.MenuItem;
 
 import java.util.UUID;
 
 @Repository
-public interface MenuDishesRepository extends JpaRepository<MenuDishes, UUID> {
+public interface MenuItemRepository extends JpaRepository<MenuItem, UUID> {
     @Modifying
-    @Query("delete from MenuDishes md WHERE md.dish.id = :id ")
+    @Query("delete from MenuItem md WHERE md.dish.id = :id ")
     void delete(@Param("id") UUID id);
 
     @Modifying
-    @Query("delete from MenuDishes md where md.restaurant.id = :id")
+    @Query("delete from MenuItem md where md.restaurant.id = :id")
     void deleteWithRestaurantId(@Param("id") UUID id);
 
 }

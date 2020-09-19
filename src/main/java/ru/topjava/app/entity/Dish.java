@@ -1,9 +1,6 @@
 package ru.topjava.app.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,13 +11,13 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.UUID;
 
-
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
 @Builder
-@Table(name = "dishes")
+@Table(name = "dish")
 @Access(AccessType.FIELD)
 public class Dish {
     @Id
@@ -38,7 +35,7 @@ public class Dish {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "dish_id")
-    private List<MenuDishes> menuDishes;
+    private List<MenuItem> menuDishes;
 
     public Dish(UUID id, String name, BigDecimal price) {
         this.id = id;

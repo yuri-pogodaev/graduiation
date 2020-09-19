@@ -31,9 +31,9 @@ public class VoteController {
     }
 
 
-    @GetMapping("/{restaurantId}/{userId}")
-    public VoteForResponse getById(@PathVariable UUID restaurantId, @PathVariable UUID userId) {
-        return voteService.getById(restaurantId, userId);
+    @GetMapping("/{id}")
+    public VoteForResponse getById(@PathVariable("id") UUID id) throws Exception {
+        return voteService.getById(id);
     }
 
     @PostMapping("/save")

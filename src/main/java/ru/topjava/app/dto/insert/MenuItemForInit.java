@@ -11,8 +11,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Builder
-public class MenuDishesForInit {
+public class MenuItemForInit {
     private UUID dish;
     private UUID restaurant;
+    private UUID id;
 }
 

@@ -6,14 +6,14 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import ru.topjava.app.dto.response.MenuDishesForResponse;
+import ru.topjava.app.dto.response.MenuItemForResponse;
 
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-class MenuDishesControllerTest extends AbstractControllerTest {
+class MenuItemControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
@@ -22,9 +22,9 @@ class MenuDishesControllerTest extends AbstractControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
-        MenuDishesForResponse[] actual = objectMapper.readValue(res.getResponse().getContentAsString(), MenuDishesForResponse[].class);
+        MenuItemForResponse[] actual = objectMapper.readValue(res.getResponse().getContentAsString(), MenuItemForResponse[].class);
         String data = getResourceFileContextAsString("classpath:menudishes/getAll.json");
-        MenuDishesForResponse[] expected = objectMapper.readValue(data, MenuDishesForResponse[].class);
+        MenuItemForResponse[] expected = objectMapper.readValue(data, MenuItemForResponse[].class);
         assertEquals(Arrays.toString(expected), Arrays.toString(actual));
         assertEquals(Arrays.hashCode(expected), Arrays.hashCode(actual));
         assertEquals(Arrays.toString(expected), Arrays.toString(actual));
@@ -38,9 +38,9 @@ class MenuDishesControllerTest extends AbstractControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
 
-        MenuDishesForResponse actual = objectMapper.readValue(res.getResponse().getContentAsString(), MenuDishesForResponse.class);
+        MenuItemForResponse actual = objectMapper.readValue(res.getResponse().getContentAsString(), MenuItemForResponse.class);
         String data = getResourceFileContextAsString("classpath:menudishes/getById.json");
-        MenuDishesForResponse expected = objectMapper.readValue(data, MenuDishesForResponse.class);
+        MenuItemForResponse expected = objectMapper.readValue(data, MenuItemForResponse.class);
         assertEquals(expected, actual);
         assertEquals(expected.hashCode(), actual.hashCode());
         assertEquals(expected.toString(), actual.toString());

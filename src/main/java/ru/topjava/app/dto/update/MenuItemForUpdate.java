@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.topjava.app.entity.MenuDishes;
+import ru.topjava.app.entity.MenuItem;
 
 import java.util.UUID;
 
@@ -12,11 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Builder
-public class MenuDishesForUpdate {
+public class MenuItemForUpdate {
     private UUID dish;
-
-    public MenuDishesForUpdate(MenuDishes menuDishes) {
+private UUID restaurant;
+    public MenuItemForUpdate(MenuItem menuItem) {
 //                this.m = dish.getDish();
-        this.dish = menuDishes.getId();
+        this.dish = menuItem.getId();
     }
 }
