@@ -31,11 +31,6 @@ public class VoteService {
         this.userRepository = userRepository;
     }
 
-    public List<VoteForResponse> getAll() {
-        List<Vote> list = votesRepository.findAll();
-        return list.stream().map(VoteForResponse::new).collect(Collectors.toList());
-    }
-
     public Vote createNewVote(@Valid VoteForInit voteForInit) throws Exception {
         User user = userRepository.findById(voteForInit.getUser())
                 .orElseThrow(() -> new Exception(""));

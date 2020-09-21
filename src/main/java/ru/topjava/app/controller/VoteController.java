@@ -22,23 +22,17 @@ public class VoteController {
         this.voteService = voteService;
     }
 
-    @GetMapping("/all")
-    public List<VoteForResponse> getAll() {
-        return voteService.getAll();
-    }
-
     @GetMapping("/history/{userId}")
     public List<VoteForResponse> getHistory(@PathVariable UUID userId) {
         return voteService.getHistory(userId);
     }
-
 
     @GetMapping("/{id}")
     public VoteForResponse getById(@PathVariable("id") UUID id) throws Exception {
         return voteService.getById(id);
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public UUID save(@RequestBody @Valid VoteForInit voteForInit) throws Exception {
         Vote created = voteService.createNewVote(voteForInit);
         return created.getId();

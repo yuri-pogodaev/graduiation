@@ -128,7 +128,19 @@ Just run Application
 * **Example:**
 
 `curl -s -X DELETE http://localhost:8080/admin/restaurants/44569c6f-c11f-4d0c-8578-b57b736bc079/menus/d2f63f20-da39-4606-9aae-1c492d3c4a42 --user admin@gmail.com:pass`
+| Role | Path                         |  Method | Description         |
+|------|------------------------------|---------|---------------------|
+| Admin| [`/admin/restaurants/{id}/menus`]  |   `GET` | Get all menu |
+* **Example:**
 
+`curl -s http://localhost:8080/admin/restaurants/44569c6f-c11f-4d0c-8578-b57b736bc079/menus --user admin@gmail.com:pass`
+
+| Role | Path                              |  Method | Description          |
+|------|-----------------------------------|---------|----------------------|
+| Admin| [`/admin/restaurants/{id}/menus/{id}`]  |   `GET` | Get menu by id |
+* **Example:**
+
+`curl -s http://localhost:8080/admin/restaurants/44569c6f-c11f-4d0c-8578-b57b736bc079/menus/d2f63f20-da39-4606-9aae-1c492d3c4a42 --admin@gmail.com:pass`
 
 ### User API
 #### User Profile API
@@ -137,17 +149,7 @@ Just run Application
 |------|----------------------|----------|-------------|
 | User| [`/profile/register`]|   `POST` | Register new user |
 * **Example:**
-
-| Role | Path                      |  Method | Description |
-|------|---------------------------|---------|-------------|
-| User| [`/profile/{id}`]|   `PUT` | Update user |
-* **Example:**
-
-| Role | Path                      |  Method | Description |
-|------|---------------------------|---------|-------------|
-| User| [`/profile/{id}`]|`DELETE` | Delete user |
-* **Example:**
-
+`curl -s -X POST -d '{"name":"New User","email":"1232@gmail.com","password":"password", "registred":"2020-07-06","role":"USER"}' -H 'Content-Type:application/json' http://localhost:8080/admin/users --user user1@yandex.ru:pass`
 
 #### User Restaurant API
 | Role | Path                         |  Method | Description         |
