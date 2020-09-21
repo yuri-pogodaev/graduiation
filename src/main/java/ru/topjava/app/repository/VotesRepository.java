@@ -26,4 +26,5 @@ public interface VotesRepository extends JpaRepository<Vote, UUID> {
 
     @Query("select v from Vote v where v.user.id = :userId")
     Optional<List<Vote>> findVoteByUserId(@Param("userId") UUID userId);
+
 }

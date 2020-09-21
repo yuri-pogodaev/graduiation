@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.topjava.app.entity.MenuItem;
 
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 @Transactional(readOnly = true)
 @Repository
@@ -20,5 +23,6 @@ public interface MenuItemRepository extends JpaRepository<MenuItem, UUID> {
     @Query("delete from MenuItem md where md.restaurant.id = :id")
     void deleteWithRestaurantId(@Param("id") UUID id);
 
+    List<MenuItem> getAllByUpdatedAt(@NotNull LocalDate updatedAt);
 }
 

@@ -3,6 +3,7 @@ package ru.topjava.app.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.topjava.app.dto.insert.MenuItemForInit;
+import ru.topjava.app.dto.response.MenuForDay;
 import ru.topjava.app.dto.response.MenuItemForResponse;
 import ru.topjava.app.dto.update.MenuItemForUpdate;
 import ru.topjava.app.entity.Dish;
@@ -72,6 +73,11 @@ public class MenuItemService {
         Dish dish = dishesRepository.getOne(menuItemForUpdate.getDish());
         menuItem.setDish(dish);
         return menuItemRepository.saveAndFlush(menuItem);
+    }
+
+    public List<MenuForDay> getAllForVoteInThisDay(LocalDate date) throws Exception {
+        List<MenuItem> list = menuItemRepository.getAllByUpdatedAt(date);
+        return list.stream().map(MenuForDay::new).collect(Collectors.toList());
     }
 }
 

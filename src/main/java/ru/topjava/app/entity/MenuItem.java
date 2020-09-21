@@ -31,4 +31,5 @@ public class MenuItem {
     @Column(name = "updated_at", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
     private LocalDate updatedAt;
+
 }
