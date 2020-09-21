@@ -32,7 +32,7 @@ public class VoteController {
         return voteService.getById(id);
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public UUID save(@RequestBody @Valid VoteForInit voteForInit) throws Exception {
         Vote created = voteService.createNewVote(voteForInit);
         return created.getId();

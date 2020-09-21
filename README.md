@@ -54,7 +54,7 @@ Just run Application
 | Admin| [`/admin/users`]|   `POST` | Create user |
 * **Example:**
 
-`curl -s -X POST -d '{"name":"New User","email":"1232@gmail.com","password":"password", "registred":"2020-07-06","role":"USER"}' -H 'Content-Type:application/json' http://localhost:8080/admin/users --user admin@gmail.com:pass`
+`curl -H 'Content-Type: application / json' -s -X POST http://localhost:8080/admin/users --user admin@gmail.com:pass -d '{"name":"New User","email":"1232@gmail.com","password":"password", "registred":"2020-07-06","role":"USER"}'`
 
 | Role | Path                      |  Method | Description |
 |------|---------------------------|---------|-------------|
@@ -149,7 +149,7 @@ Just run Application
 |------|----------------------|----------|-------------|
 | User| [`/profile/register`]|   `POST` | Register new user |
 * **Example:**
-`curl -s -X POST -d '{"name":"New User","email":"1232@gmail.com","password":"password", "registred":"2020-07-06","role":"USER"}' -H 'Content-Type:application/json' http://localhost:8080/admin/users --user user1@yandex.ru:pass`
+`curl -s -X POST -d '{"name":"New User","email":"1232@gmail.com","password":"password", "registred":"2020-07-06","role":"USER"}' -H 'Content-Type:application/json' http://localhost:8080/profile/register --user user1@yandex.ru:pass`
 
 #### User Restaurant API
 | Role | Path                         |  Method | Description         |
@@ -163,4 +163,4 @@ Just run Application
 |------|---------------------------|---------|-------------|
 | User| [`/vote`]|`POST` | Vote for restaurant |
 * **Example:**
-
+`curl -s -X POST -d '{"user":"6a1fd295-66c4-490b-b8de-24b8029a4db9","restaurant":"44569c6f-c11f-4d0c-8578-b57b736bc079","updatedAt":"2020-07-21"}' -H 'Content-Type:application/json' http://localhost:8080/vote --user user1@yandex.ru:pass`
