@@ -24,7 +24,7 @@ public class DishService {
         this.menuItemRepository = menuItemRepository;
     }
 
-    @Transactional
+
     public List<DishForResponse> getAll() {
         List<Dish> list = dishesRepository.findAll();
         return list.stream().map(DishForResponse::new).collect(Collectors.toList());
@@ -45,13 +45,12 @@ public class DishService {
         return newDish;
     }
 
-    @Transactional
     public UUID init(@Valid DishForInit dishForInit) {
         Dish newDish = createNewDish(dishForInit);
         return newDish.getId();
     }
 
-    @Transactional
+
     public void deleteById(UUID id) throws Exception {
         Dish dish = dishesRepository.findById(id).orElseThrow(() -> new Exception("user not found"));
         menuItemRepository.delete(dish.getId());
@@ -59,7 +58,6 @@ public class DishService {
 
     }
 
-    @Transactional
     public void update(DishForUpdate dishForUpdate, UUID id) {
         dishesRepository.findById(id).map(user -> {
             user.setName(dishForUpdate.getName());

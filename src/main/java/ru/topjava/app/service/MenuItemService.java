@@ -30,7 +30,6 @@ public class MenuItemService {
         this.restaurantsRepository = restaurantsRepository;
     }
 
-    @Transactional
     public List<MenuItemForResponse> getAll() {
         List<MenuItem> list = menuItemRepository.findAll();
         return list.stream().map(MenuItemForResponse::new).collect(Collectors.toList());
@@ -47,13 +46,12 @@ public class MenuItemService {
         return new MenuItemForResponse(menuItem);
     }
 
-    @Transactional
+
     public void deleteById(UUID id) throws Exception {
         MenuItem menuItem = menuItemRepository.findById(id).orElseThrow(() -> new Exception("dish not found"));
         menuItemRepository.deleteById(menuItem.getId());
     }
 
-    @Transactional
     public MenuItem createNewMenuDishes(MenuItemForInit menuItemForInit) throws Exception {
         Restaurant restaurant = restaurantsRepository.findById(menuItemForInit.getRestaurant())
                 .orElseThrow(() -> new Exception(""));
@@ -68,16 +66,12 @@ public class MenuItemService {
         return menuItem;
     }
 
-    @Transactional
+
     public MenuItem update(MenuItemForUpdate menuItemForUpdate, UUID id) throws Exception {
         MenuItem menuItem = menuItemRepository.findById(id).orElseThrow(() -> new Exception(""));
         Dish dish = dishesRepository.getOne(menuItemForUpdate.getDish());
         menuItem.setDish(dish);
         return menuItemRepository.saveAndFlush(menuItem);
-        //        dishesRepository.findById(id)
-//        menuDishesRepository.findById(id).map(menuDishes -> {
-//            menuDishes.getDish().setId(menuDishesForUpdate.getDish());
-//            return menuDishesRepository.saveAndFlush(menuDishes);
     }
 }
 

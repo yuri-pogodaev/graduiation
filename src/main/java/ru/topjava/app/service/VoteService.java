@@ -1,7 +1,6 @@
 package ru.topjava.app.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.topjava.app.dto.insert.VoteForInit;
 import ru.topjava.app.dto.response.VoteForResponse;
 import ru.topjava.app.entity.Restaurant;
@@ -11,7 +10,6 @@ import ru.topjava.app.repository.RestaurantsRepository;
 import ru.topjava.app.repository.UserRepository;
 import ru.topjava.app.repository.VotesRepository;
 
-import javax.imageio.stream.IIOByteBuffer;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -22,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class VoteService {
 
-    private static final LocalTime VOTE_END_TIME = LocalTime.of(23, 0, 0);
+    private static final LocalTime VOTE_END_TIME = LocalTime.of(11, 0, 0);
     private final VotesRepository votesRepository;
     private final RestaurantsRepository restaurantsRepository;
     private final UserRepository userRepository;
@@ -33,14 +31,11 @@ public class VoteService {
         this.userRepository = userRepository;
     }
 
-    @Transactional
     public List<VoteForResponse> getAll() {
         List<Vote> list = votesRepository.findAll();
         return list.stream().map(VoteForResponse::new).collect(Collectors.toList());
     }
 
-
-    @Transactional
     public Vote createNewVote(@Valid VoteForInit voteForInit) throws Exception {
         User user = userRepository.findById(voteForInit.getUser())
                 .orElseThrow(() -> new Exception(""));
@@ -79,13 +74,11 @@ public class VoteService {
 
     }
 
-    @Transactional
     public VoteForResponse getById(UUID id) throws Exception {
-        Vote vote = votesRepository.findById(id).orElseThrow(()-> new Exception("vote not found"));
+        Vote vote = votesRepository.findById(id).orElseThrow(() -> new Exception("vote not found"));
         return new VoteForResponse(vote);
     }
 
-    @Transactional
     public List<VoteForResponse> getHistory(UUID userId) {
         List<Vote> result = null;
         try {

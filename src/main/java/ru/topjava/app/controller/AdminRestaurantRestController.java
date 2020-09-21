@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.topjava.app.dto.insert.MenuItemForInit;
 import ru.topjava.app.dto.insert.RestaurantForInit;
+import ru.topjava.app.dto.response.DishForResponse;
+import ru.topjava.app.dto.response.MenuItemForResponse;
 import ru.topjava.app.dto.response.RestaurantForResponse;
 import ru.topjava.app.dto.update.MenuItemForUpdate;
 import ru.topjava.app.dto.update.RestaurantForUpdate;
@@ -22,13 +24,13 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+import static ru.topjava.app.controller.AdminRestaurantRestController.REST_URL;
+
 @RestController
-@RequestMapping(value = "/admin/restaurants", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminRestaurantRestController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
     public static final String MENUS_REST_URL = "/{id}/menus";
-
-    //    public static final String DISH_REST_URL = MENUS_REST_URL + "/{id}/dishes";
     public static final String REST_URL = "/admin/restaurants";
 
     private final RestaurantService restaurantService;
@@ -102,8 +104,17 @@ public class AdminRestaurantRestController {
         menuItemService.deleteById(id);
     }
 
-//todo need operation with dish for menu(create,update,delete)
+    @GetMapping(value = MENUS_REST_URL + "/{id}")
+    public MenuItemForResponse getMenuById(@PathVariable("id") UUID id) throws Exception {
+        log.info("get {}",id);
+        return menuItemService.getById(id);
+    }
 
+    @GetMapping(value = MENUS_REST_URL)
+    public List<MenuItemForResponse> getAllMenu() {
+        log.info("getAll");
+        return menuItemService.getAll();
+    }
 }
 
 

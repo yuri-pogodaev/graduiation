@@ -1,6 +1,8 @@
 package ru.topjava.app.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.app.dto.insert.VoteForInit;
 import ru.topjava.app.dto.response.VoteForResponse;
@@ -39,8 +41,6 @@ public class VoteController {
     @PostMapping("/save")
     public UUID save(@RequestBody @Valid VoteForInit voteForInit) throws Exception {
         Vote created = voteService.createNewVote(voteForInit);
-
         return created.getId();
     }
-
 }

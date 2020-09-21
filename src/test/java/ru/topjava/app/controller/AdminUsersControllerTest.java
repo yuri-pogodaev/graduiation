@@ -16,14 +16,14 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-class UserControllerTest extends AbstractControllerTest {
+class AdminUsersControllerTest extends AbstractControllerTest {
     //    @WithMockUser("user1@yandex.ru")
     @Autowired
     private UserRepository userRepository;
 
     @Test
     void getAll() throws Exception {
-        MvcResult res = mockMvc.perform(get("/user/all")
+        MvcResult res = mockMvc.perform(get("/admin/users")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
@@ -40,7 +40,7 @@ class UserControllerTest extends AbstractControllerTest {
     //    @WithMockUser("user1@yandex.ru")
     @Test
     void getById() throws Exception {
-        MvcResult res = mockMvc.perform(get("/user/6a1fd295-66c4-490b-b8de-24b8029a4db9")
+        MvcResult res = mockMvc.perform(get("/admin/users/6a1fd295-66c4-490b-b8de-24b8029a4db9")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -59,26 +59,26 @@ class UserControllerTest extends AbstractControllerTest {
     @Test
     void update() throws Exception {
 
-        MvcResult res = mockMvc.perform(put("/user/update/09898357-f0fa-45ab-acee-9d048894c89b")
+        MvcResult res = mockMvc.perform(put("/admin/users/09898357-f0fa-45ab-acee-9d048894c89b")
                 .contentType(MediaType.APPLICATION_JSON).content(getResourceFileContextAsString("classpath:user/bodyForUpdate.json")))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isNoContent())
 //                .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }
 
     @Test
     void save() throws Exception {
-        MvcResult res = mockMvc.perform(post("/user/save")
+        MvcResult res = mockMvc.perform(post("/admin/users/")
                 .contentType(MediaType.APPLICATION_JSON).content(getResourceFileContextAsString("classpath:user/bodyForSave.json")))
-                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
         //вытянуть или count
     }
 
     @Test
     void delete() throws Exception {
-        MvcResult res = mockMvc.perform(MockMvcRequestBuilders.delete("/user/{id}", "6a1fd295-66c4-490b-b8de-24b8029a4db9")
+        MvcResult res = mockMvc.perform(MockMvcRequestBuilders.delete("/admin/users/{id}", "6a1fd295-66c4-490b-b8de-24b8029a4db9")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isNoContent())
                 .andReturn();
         userRepository.count();
     }

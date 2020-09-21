@@ -15,11 +15,11 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-class DishControllerTest extends AbstractControllerTest {
+class AdminDishControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
-        MvcResult res = mockMvc.perform(get("/dish/all")
+        MvcResult res = mockMvc.perform(get("/admin/dish/")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
@@ -35,7 +35,7 @@ class DishControllerTest extends AbstractControllerTest {
     @WithMockUser("user1@yandex.ru")
     @Test
     void getById() throws Exception {
-        MvcResult res = mockMvc.perform(get("/dish/06d18c89-1461-48ad-bcfa-a726a51d3ec3")
+        MvcResult res = mockMvc.perform(get("/admin/dish/06d18c89-1461-48ad-bcfa-a726a51d3ec3")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -52,26 +52,25 @@ class DishControllerTest extends AbstractControllerTest {
 
     @Test
     void save() throws Exception {
-        MvcResult res = mockMvc.perform(post("/dish/save")
+        MvcResult res = mockMvc.perform(post("/admin/dish/")
                 .contentType(MediaType.APPLICATION_JSON).content(getResourceFileContextAsString("classpath:dish/bodyForSave.json")))
-                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+                .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
     }
 
     @Test
     void delete() throws Exception {
-        MvcResult res = mockMvc.perform(MockMvcRequestBuilders.delete("/dish/{id}", "06d18c89-1461-48ad-bcfa-a726a51d3ec3")
+        MvcResult res = mockMvc.perform(MockMvcRequestBuilders.delete("/admin/dish/{id}", "06d18c89-1461-48ad-bcfa-a726a51d3ec3")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isNoContent())
                 .andReturn();
     }
 
     @WithMockUser("admin@gmail.com")
     @Test
     void update() throws Exception {
-
-        MvcResult res = mockMvc.perform(put("/dish/update/09f79f73-5d25-4461-85d8-2e1bdf9420e9")
+        MvcResult res = mockMvc.perform(put("/admin/dish/09f79f73-5d25-4461-85d8-2e1bdf9420e9")
                 .contentType(MediaType.APPLICATION_JSON).content(getResourceFileContextAsString("classpath:dish/bodyForUpdate.json")))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isNoContent())
 //                .andDo(MockMvcResultHandlers.print())
                 .andReturn();
     }

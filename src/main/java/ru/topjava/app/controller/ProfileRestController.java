@@ -17,6 +17,7 @@ import static ru.topjava.app.controller.ProfileRestController.REST_URL;
 @RestController
 @RequestMapping(REST_URL)
 public class ProfileRestController {
+
     public static final String REST_URL = "/profile";
 
     private final UserService userService;
