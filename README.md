@@ -28,7 +28,7 @@ Just run Application
  * User can do:
     - viewing restaurants, it's lunch menu and dishes for today.
     - voting and update vote for a restaurant before 11:00.
- 
+## Add Postman collection for test API
     
 
 ### Curl commands REST API
@@ -54,7 +54,7 @@ Just run Application
 | Admin| [`/admin/users`]|   `POST` | Create user |
 * **Example:**
 
-`curl -H 'Content-Type: application / json' -s -X POST http://localhost:8080/admin/users --user admin@gmail.com:pass -d '{"name":"New User","email":"1232@gmail.com","password":"password", "registred":"2020-07-06","role":"USER"}'`
+`curl -H 'Content-Type: application/json' -X POST http://localhost:8080/admin/users --user admin@gmail.com:pass -d '{"name":"New User","email":"1232@gmail.com","password":"password", "registred":"2020-07-06","role":"USER"}'`
 
 | Role | Path                      |  Method | Description |
 |------|---------------------------|---------|-------------|

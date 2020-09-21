@@ -45,6 +45,7 @@ public class AdminRestaurantRestController {
 
     //после успешного создания ресурса возвращают 201 + url созданного ресурса
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<UUID> create(@RequestBody @Valid RestaurantForInit restaurantForInit) {
         log.info("create {}", restaurantForInit);
         UUID created = restaurantService.init(restaurantForInit);
