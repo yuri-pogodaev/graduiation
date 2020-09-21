@@ -14,9 +14,9 @@ import ru.topjava.app.repository.MenuItemRepository;
 import ru.topjava.app.repository.RestaurantsRepository;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class MenuItemService {
@@ -76,8 +76,25 @@ public class MenuItemService {
     }
 
     public List<MenuForDay> getAllForVoteInThisDay(LocalDate date) throws Exception {
+        List<MenuForDay> response = new ArrayList<>();
         List<MenuItem> list = menuItemRepository.getAllByUpdatedAt(date);
-        return list.stream().map(MenuForDay::new).collect(Collectors.toList());
+        HashSet<Restaurant> rest = new HashSet<>();
+        list.forEach(x-> rest.add(x.getRestaurant()));
+        rest.forEach(x-> {
+            MenuForDay menu = new MenuForDay();
+            menu.setUpdatedAt(date);
+            menu.setRestaurant(x.getName());
+            List<String> dishes = new ArrayList<>();
+            list.forEach(a-> {
+                if (a.getRestaurant().equals(x)) {
+                    dishes.add(a.getDish().getName());
+                }
+            });
+            menu.setDish(dishes);
+            response.add(menu);
+        });
+
+        return response;
     }
 }
 
